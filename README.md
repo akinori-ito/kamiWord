@@ -38,5 +38,8 @@ WordやExcelなどの"docx"や"xlsx"などの形式，いわゆるOOXML形式ド
 
 現在，改行がうまく表現できていません．改行文字は&#10;で表現されていますが，ドキュメントの文字列だけでなくフォーマットも操作しなければならないため，単に文字列の一部を&#10;にしただけだと改行になってくれません．（対応策の提案募集中）
 
+## 参考文献
+Ito, Akinori. "Demonstration Experiment of Data Hiding into OOXML Document for Suppression of Plagiarism." Advances in Intelligent Information Hiding and Multimedia Signal Processing. Springer, Cham, 2017. 3-10.
+
 ## 作者
 伊藤彰則 aito@fw.ipsj.or.jp
