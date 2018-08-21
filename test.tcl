@@ -2,6 +2,7 @@ lappend auto_path .
 package require kamiWord
 
 set template template.docx
+set template2 template.xlsx
 
 set values [dict create]
 dict set values {!!!Name!!!} ÇŸÇ∞ëæòY
@@ -15,3 +16,10 @@ dict set values {!!!Cat!!!} Åõ
 set word [::kamiWord::open_docx $template]
 ::kamiWord::replace $word $values
 ::kamiWord::finish $word replaced.docx
+
+set values [dict create]
+dict set values {!!!x!!!} ÇªÇÃÇP
+dict set values {!!!y!!!} ÇªÇÃÇQ
+set excel [::kamiWord::open_docx $template2]
+::kamiWord::replace $excel $values
+::kamiWord::finish $excel replaced.xlsx
