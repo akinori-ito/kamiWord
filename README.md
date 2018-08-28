@@ -28,7 +28,7 @@ dict set values {!!!キー!!!} 適当な値
 3. Word文書を開き，次のようにして新しい文書を生成します．
 
 ```
-set word [::kamiWord::open_word テンプレートファイル名]
+set word [::kamiWord::open_docx テンプレートファイル名]
 ::kamiWord::replace $word $values
 ::kamiWord::finish $word 出力ファイル名
 ```
