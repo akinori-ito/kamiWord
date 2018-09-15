@@ -1,10 +1,36 @@
 package provide kamiWord 1.0
 package require fileutil
+package require cmdline
 
 namespace eval kamiWord {
   variable tempdir [::fileutil::tempdir]
   variable seq 0
   variable holderpattern {!!![^!]*!!!}
+  
+  proc replacelist {} {
+     return [dict create]
+  }
+  
+  proc setvalue args {
+    ::set arglist {{explode "Explode value"} {sepchar.arg {} "character to separate value"}}
+    ::set usage {Usage: ::kamiWord::set [-explode] [-sepchar sepchar] replacelistvar key value}
+    ::set myarg $args
+    array set params [::cmdline::getoptions myarg $arglist $usage]
+    if {[llength $myarg] != 3} {
+     error "$usage"
+    }
+    upvar [lindex $myarg 0] replacelist
+    ::set key [lindex $myarg 1]
+    ::set value [lindex $myarg 2]
+    if {$params(explode)} {
+     set explodearg [split $value $params(sepchar)]
+     for {set i 0} {$i < [llength $explodearg]} {incr i} {
+      dict set replacelist "!!!$key$i!!!" [lindex $explodearg $i]
+     }
+    } else {
+     dict set replacelist "!!!$key!!!" $value
+    }
+  }
   
   proc replace {zdir vals} {
     variable holderpattern
@@ -29,7 +55,7 @@ namespace eval kamiWord {
     cd $curdir
  }
  
- proc open_docx {docxfile} {
+ proc open_document {docxfile} {
     variable tempdir
     variable seq
     switch [file extension $docxfile] {
